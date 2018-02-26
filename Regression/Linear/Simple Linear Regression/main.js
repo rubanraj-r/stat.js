@@ -18,18 +18,18 @@ module.exports = {
     initCalc : function(X, y){ // function calculates X_mean, y_mean, numerator and denominator of slope
         var X_sum = 0,
             y_sum = 0;
-        for(var i=0, len=X.length; i<len; i++){ // summation of X and y respectively
+        X.map((item, i) => { // summation of X and y respectively
             X_sum += X[i];
             y_sum += y[i];
-        }
+        });
         var X_mean = X_sum/X.length,
             y_mean = y_sum/X.length,
             numerator = 1,
             denominator = 1;
-        for(var i=0, len=X.length; i<len; i++){ // summation of numerator and denominator respectively
+        X.map((item, i) => { // summation of numerator and denominator respectively
             numerator += (X[i]-X_mean) * (y[i]-y_mean);
             denominator += (X[i]-X_mean) * (X[i]-X_mean);
-        }
+        });
         var obj = {
             X_mean : X_mean,
             y_mean : y_mean,
