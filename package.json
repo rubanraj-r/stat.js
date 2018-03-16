@@ -1,0 +1,30 @@
+{
+  "name": "stat",
+  "version": "1.0.0",
+  "description": "<h1> Stat.JS </h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ru8anraj/stat.js.git"
+  },
+  "keywords": [
+    "AI",
+    "ML",
+    "Stats",
+    "Algebric",
+    "Statistical",
+    "Models"
+  ],
+  "author": "ru8anraj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ru8anraj/stat.js/issues"
+  },
+  "homepage": "https://github.com/ru8anraj/stat.js#readme",
+  "dependencies": {
+    "mathjs": "^4.0.0"
+  }
+}

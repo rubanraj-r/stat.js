@@ -7,4 +7,4 @@ SLR.fit(ht, wt);
 
 pred = SLR.predict(166);
 
-console.log('-- > ', pred);
+console.log('predicted value (wt) -- > ', pred);
