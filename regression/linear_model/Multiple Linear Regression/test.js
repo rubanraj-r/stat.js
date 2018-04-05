@@ -5,8 +5,8 @@ var X = [[1010, 1280, 1280, 795, 1461],[88, 94, 95, 84, 108],[1200, 1350, 1400, 
 
 
 MLR.fit(X, y);
-var predict = MLR.predict([1000, 95, 1008])
-  , coeff = MLR.coeff_();
+var predict = MLR.predict([1000, 95, 1008]);
+var coeff = MLR.coeff_();
 
 console.log('prediction - > ', predict);
 console.log('coeff - > ', coeff);
