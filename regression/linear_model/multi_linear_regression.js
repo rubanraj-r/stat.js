@@ -5,7 +5,7 @@
 const math = require('mathjs');
 
 
-module.exports.MLR = {
+module.exports = {
   X : [], // predictors or inputs
   y : [], // outcomes
 
