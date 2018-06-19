@@ -2,7 +2,7 @@
 // Method of Least Square Algorithm    //
 // Rubanraj R (ru8anraj@gmail.com)     //
 
-module.exports = {
+module.exports.SLR = {
   X : [], // predictors or inputs
   y : [], // outcomes
 
