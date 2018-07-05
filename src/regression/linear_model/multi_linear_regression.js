@@ -1,25 +1,31 @@
-// Hand coded Multiple Linear Regression //
+// Multiple Linear Regression            //
 // Method of Least Square Algorithm      //
 // Rubanraj R (ru8anraj@gmail.com)       //
 
+// importing dependencies
 const math = require('mathjs');
 
-
+/*!
+ * MLR Object
+ * 
+ */
 module.exports = {
   X : [], // predictors or inputs
   y : [], // outcomes
 
-  generateOnes : function(len){
-    var onesArray = [];
-    for(var i=0; i<len; i++){
-      onesArray.push(1);
-    }
-    return onesArray;
-  },
-
   fit : function(predictors, outcomes){
+    /*!
+     * FIT method
+     * @params -> {Array of Arrays} predictors
+     * @params -> {Array of Numbers} outcomes
+     * 
+     * @purpose -> assigns predictors and outcomes to the X and y variable resp 
+     * 
+     * @returns -> Promise of assignment (X, y variable)
+     */
     return new Promise((resolve, reject) => {
-      var ones = this.generateOnes(predictors[0].length)
+      var ones = [];
+      predictors[0].map((item) => ones.push(1));
       predictors.unshift(ones);
       var temp_X = math.matrix(predictors)
         , temp_y = math.matrix(outcomes);
@@ -33,6 +39,15 @@ module.exports = {
   },
 
   MLR : function(){
+    /*!
+     * MLR method
+     * @params -> none
+     * 
+     * @purpose -> To calculate the beta values
+     *          -> β = (X^T X)^(-1) X^T y
+     * 
+     * @returns -> beta values
+     */
     var X_transpose = math.transpose(this.X)
       , X_trans_X = math.multiply(X_transpose, this.X)
       , X_trans_X_inv = math.inv(X_trans_X)
@@ -43,9 +58,19 @@ module.exports = {
   },
 
   predict : function(predictor){
+    /*!
+     * PREDICT method
+     * @params -> {Array of Numbers} predictors
+     * 
+     * @purpose -> calls MLR method to calculate beta values 
+     *          -> predict the expected outcome by multiplying the new predictors with the beta value
+     * 
+     * @returns -> predicted value (y)
+     */
+
     if (this.X.length === 0 || this.y.length === 0) {
         throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
-    }else {
+    } else {
       var betas = this.MLR();
       predictor.unshift(1);
       y = math.multiply(predictor, betas);
@@ -54,9 +79,18 @@ module.exports = {
   },
 
   coeff_ : function(){
+    /*!
+     * COEFF_ method
+     * @params -> none
+     * 
+     * @purpose -> calls MLR method to calculate beta values 
+     * 
+     * @returns -> beta values
+     */
+
     if (this.X.length === 0 || this.y.length === 0) {
         throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
-    }else {
+    } else {
       var betas = this.MLR();
       return betas;
     }
