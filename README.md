@@ -4,7 +4,7 @@
 <br />
 <h2> How to use </h2>
 <p> This package is developed with the concern of simple plug and play experience without worrying the under the hood issues </p>
-<script>
+
     var { SLR } = require('stat_learn_js');
 
     var ht = [152, 166, 174, 179, 183, 172] // X (independent variable)
@@ -13,9 +13,7 @@
     SLR.fit(ht, wt); // training starts
 
     SLR.predict(166); // predict the new weight with the new height value
-</script>
 
-<script>
     const {MLR} = require('stat_learn_js');
 
     // lets predict with multiple input columns
@@ -33,5 +31,3 @@
     MLR.fit(X, milage); // Training starts
     MLR.predict([1000, 95, 1008]); // predicting with the new input
     MLR.coeff_(); //coefficient values or beta values
-
-</script>
