@@ -73,7 +73,7 @@ module.exports = {
 
   SLR : function(){
     /*!
-     * FIT method
+     * SLR method
      * @params -> none
      * 
      * @purpose -> calls initial calculation function to pre-process the data
