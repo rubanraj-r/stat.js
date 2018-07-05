@@ -1,5 +1,5 @@
 <h1> Stat.JS </h1>
-<p> Provides You a Rich Models for Statistical Computing using JavaScript </p>
+<p> Provides a Rich Models for Statistical Computing using JavaScript </p>
 <br />
 <br />
 <h2> How to use </h2>
