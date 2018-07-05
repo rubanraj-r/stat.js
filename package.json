@@ -1,7 +1,7 @@
 {
   "name": "stat_learn_js",
-  "version": "1.0.3",
-  "description": "<h1> Stat.JS </h1>",
+  "version": "1.0.4",
+  "description": "Stat.JS",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

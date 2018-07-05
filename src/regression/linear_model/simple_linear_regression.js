@@ -7,6 +7,18 @@ module.exports = {
   y : [], // outcomes
 
   fit : function(predictors, outcomes){
+    return new Promise((resolve, reject) => {
+      if (predictors.length !== outcomes.length) {
+        throw new Error('>> input array and output array should be same in length <<');
+      } else {
+        this.X = predictors;
+        this.y = outcomes;
+        resolve({
+          X:this.X,
+          y:this.y
+        });
+      }
+    });
     if (predictors.length !== outcomes.length) {
         throw new Error('>> input array and output array should be same in length <<');
     } else {

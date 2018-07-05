@@ -18,12 +18,18 @@ module.exports = {
   },
 
   fit : function(predictors, outcomes){
-    var ones = this.generateOnes(predictors[0].length)
-    predictors.unshift(ones);
-    var temp_X = math.matrix(predictors)
-      , temp_y = math.matrix(outcomes);
-    this.X = math.transpose(temp_X);
-    this.y = math.transpose(temp_y);
+    return new Promise((resolve, reject) => {
+      var ones = this.generateOnes(predictors[0].length)
+      predictors.unshift(ones);
+      var temp_X = math.matrix(predictors)
+        , temp_y = math.matrix(outcomes);
+      this.X = math.transpose(temp_X);
+      this.y = math.transpose(temp_y);
+      resolve({
+        X: this.X,
+        y: this.y
+      });
+    });
   },
 
   MLR : function(){
