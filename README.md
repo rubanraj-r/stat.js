@@ -5,6 +5,8 @@
 <h2> How to use </h2>
 <p> This package is developed with the concern of simple plug and play experience without worrying the under the hood issues </p>
 
+<h4> Simple Linear Regression </h4>
+    
     var { SLR } = require('stat_learn_js');
 
     var ht = [152, 166, 174, 179, 183, 172] // X (independent variable)
@@ -13,10 +15,11 @@
     SLR.fit(ht, wt); // training starts
 
     SLR.predict(166); // predict the new weight with the new height value
-
-    const {MLR} = require('stat_learn_js');
-
+    
+<h4> Multi Linear Regression </h4>
+    
     // lets predict with multiple input columns
+    const {MLR} = require('stat_learn_js');
 
     var cc = [1010, 1280, 1280, 795, 1461];
     var hp = [88, 94, 95, 84, 108];
