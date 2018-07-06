@@ -13,15 +13,18 @@ module.exports = {
   X : [], // predictors or inputs
   y : [], // outcomes
 
+  betas: {}, // contants for the MLR formula
+
   fit : function(predictors, outcomes){
     /*!
      * FIT method
      * @params -> {Array of Arrays} predictors
      * @params -> {Array of Numbers} outcomes
      * 
-     * @purpose -> assigns predictors and outcomes to the X and y variable resp 
+     * @purpose -> assigns predictors and outcomes to the X and y variable resp
+     *          -> calls MLR method to calculate the beta values and assign it to the betas variable 
      * 
-     * @returns -> Promise of assignment (X, y variable)
+     * @returns -> Promise of assignment (X, y, betas variable)
      */
     return new Promise((resolve, reject) => {
       var ones = [];
@@ -31,9 +34,11 @@ module.exports = {
         , temp_y = math.matrix(outcomes);
       this.X = math.transpose(temp_X);
       this.y = math.transpose(temp_y);
+      this.betas = this.MLR();
       resolve({
         X: this.X,
-        y: this.y
+        y: this.y,
+        betas: this.betas
       });
     });
   },
@@ -62,18 +67,15 @@ module.exports = {
      * PREDICT method
      * @params -> {Array of Numbers} predictors
      * 
-     * @purpose -> calls MLR method to calculate beta values 
-     *          -> predict the expected outcome by multiplying the new predictors with the beta value
+     * @purpose -> predict the expected outcome by multiplying the new predictors with the beta value
      * 
      * @returns -> predicted value (y)
      */
-
     if (this.X.length === 0 || this.y.length === 0) {
         throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
     } else {
-      var betas = this.MLR();
       predictor.unshift(1);
-      y = math.multiply(predictor, betas);
+      y = math.multiply(predictor, this.betas);
       return y;
     }
   },
@@ -83,16 +85,13 @@ module.exports = {
      * COEFF_ method
      * @params -> none
      * 
-     * @purpose -> calls MLR method to calculate beta values 
-     * 
      * @returns -> beta values
      */
 
     if (this.X.length === 0 || this.y.length === 0) {
         throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
     } else {
-      var betas = this.MLR();
-      return betas;
+      return this.betas;
     }
   }
 };

@@ -10,6 +10,8 @@ module.exports = {
   X : [], // predictors or inputs
   y : [], // outcomes
 
+  slopeIntercept: {}, // constants for SLR formula
+
   fit : function(predictors, outcomes){
     /*!
      * FIT method
@@ -22,10 +24,11 @@ module.exports = {
      */
     return new Promise((resolve, reject) => {
       if (predictors.length !== outcomes.length) {
-        throw new Error('>> input array and output array should be same in length <<');
+        reject(new Error('>> input array and output array should be same in length <<'));
       } else {
         this.X = predictors;
         this.y = outcomes;
+        this.slopeIntercept = this.SLR();
         resolve({
           X:this.X,
           y:this.y
@@ -101,13 +104,26 @@ module.exports = {
      * 
      * @returns -> predicted value (y)
      */
+    if (this.X.length === 0 || this.y.length === 0) {
+        throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
+    } else {
+        y = (this.slopeIntercept.slope * predictor) + this.slopeIntercept.y_intercept;
+        return y;
+    }
+  },
+
+  coeff_ : function(){
+    /*!
+     * COEFF_ method
+     * @params -> none
+     * 
+     * @returns -> beta values
+     */
 
     if (this.X.length === 0 || this.y.length === 0) {
         throw new Error('>> MISSING FIT: fit your dataset using fit() <<');
     } else {
-        slopeIntercept = this.SLR();
-        y = (slopeIntercept.slope * predictor) + slopeIntercept.y_intercept;
-        return y;
+      return this.slopeIntercept;
     }
   }
 };
