@@ -15,6 +15,25 @@ module.exports = {
 
   betas: {}, // contants for the MLR formula
 
+  MLR : function(){
+    /*!
+     * MLR method
+     * @params -> none
+     * 
+     * @purpose -> To calculate the beta values
+     *          -> β = (X^T X)^(-1) X^T y
+     * 
+     * @returns -> beta values
+     */
+    var X_transpose = math.transpose(this.X)
+      , X_trans_X = math.multiply(X_transpose, this.X)
+      , X_trans_X_inv = math.inv(X_trans_X)
+      , X_trans_y = math.multiply(X_transpose, this.y)
+      , betas = math.multiply(X_trans_X_inv, X_trans_y);
+
+    return betas;
+  },
+
   fit : function(predictors, outcomes){
     /*!
      * FIT method
@@ -41,25 +60,6 @@ module.exports = {
         betas: this.betas
       });
     });
-  },
-
-  MLR : function(){
-    /*!
-     * MLR method
-     * @params -> none
-     * 
-     * @purpose -> To calculate the beta values
-     *          -> β = (X^T X)^(-1) X^T y
-     * 
-     * @returns -> beta values
-     */
-    var X_transpose = math.transpose(this.X)
-      , X_trans_X = math.multiply(X_transpose, this.X)
-      , X_trans_X_inv = math.inv(X_trans_X)
-      , X_trans_y = math.multiply(X_transpose, this.y)
-      , betas = math.multiply(X_trans_X_inv, X_trans_y);
-
-    return betas;
   },
 
   predict : function(predictor){

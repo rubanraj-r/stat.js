@@ -12,31 +12,6 @@ module.exports = {
 
   slopeIntercept: {}, // constants for SLR formula
 
-  fit : function(predictors, outcomes){
-    /*!
-     * FIT method
-     * @params -> {Array of Numbers} predictors
-     * @params -> {Array of Numbers} outcomes
-     * 
-     * @purpose -> assigns predictors and outcomes to the X and y variable resp 
-     * 
-     * @returns -> Promise of assignment (X, y variable)
-     */
-    return new Promise((resolve, reject) => {
-      if (predictors.length !== outcomes.length) {
-        reject(new Error('>> input array and output array should be same in length <<'));
-      } else {
-        this.X = predictors;
-        this.y = outcomes;
-        this.slopeIntercept = this.SLR();
-        resolve({
-          X:this.X,
-          y:this.y
-        });
-      }
-    });
-  },
-
   initCalc : function(X, y){ // function calculates X_mean, y_mean, numerator and denominator of slope
     /*!
      * INITCALC method
@@ -92,6 +67,31 @@ module.exports = {
         y_intercept : y_intercept
     };
     return linearRegression;
+  },
+
+  fit : function(predictors, outcomes){
+    /*!
+     * FIT method
+     * @params -> {Array of Numbers} predictors
+     * @params -> {Array of Numbers} outcomes
+     * 
+     * @purpose -> assigns predictors and outcomes to the X and y variable resp 
+     * 
+     * @returns -> Promise of assignment (X, y variable)
+     */
+    return new Promise((resolve, reject) => {
+      if (predictors.length !== outcomes.length) {
+        reject(new Error('>> input array and output array should be same in length <<'));
+      } else {
+        this.X = predictors;
+        this.y = outcomes;
+        this.slopeIntercept = this.SLR();
+        resolve({
+          X:this.X,
+          y:this.y
+        });
+      }
+    });
   },
 
   predict : function(predictor){
