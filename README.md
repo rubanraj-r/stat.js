@@ -2,6 +2,12 @@
 <p> Provides a Rich Models for Statistical Computing using JavaScript </p>
 <br />
 <br />
+
+<h2>How to install</h2>
+<p> npm install stat_learn_js --save</p>
+<br />
+<br />
+
 <h2> How to use </h2>
 <p> This package is developed with the concern of simple plug and play experience without worrying the under the hood issues </p>
 
