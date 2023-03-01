@@ -26,6 +26,6 @@
   "homepage": "https://github.com/ru8anraj/stat.js#readme",
   "dependencies": {
     "mathjs": "^7.5.1",
-    "mocha": "^5.0.4"
+    "mocha": "^10.2.0"
   }
 }
